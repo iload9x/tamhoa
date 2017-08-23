@@ -1,0 +1,102 @@
+.new-feed-user-avatar {
+  border-radius: 50%;
+  border: 1px solid #f3f3f3;
+  width: 40px;
+  height: 40px;
+}
+
+.btn-love {
+  padding: 1px 20px;
+}
+
+.btn-love i {
+  font-size: 25px !important;
+}
+
+.btn-love span {
+  font-size: 14px;
+}
+
+.container-comments {
+  list-style: none;
+  padding: 0px;
+}
+
+.container-comments li {
+  padding: 10px 0px;
+}
+
+.post-item {
+  margin-bottom: 25px;
+}
+
+.color-red {
+  color: red !important;
+}
+
+.post-action {
+  margin-bottom: 15px;
+}
+
+.container-post-type {
+  #text-align: right;
+}
+
+.post-type-style {
+  background: rgb(230, 115, 115);
+  color: #fff;
+  padding: 2px 7px;
+}
+
+.post-updated-style {
+  padding: 2px 7px;
+}
+
+.post-type-style:hover {
+  color: #fff;
+}
+
+.single-comment {
+  position: relative;
+}
+
+.single-comment .close {
+  display: none;
+  position: absolute;
+  right: 0;top: 50%;
+}
+
+.single-comment:hover .close {
+  display: block;
+}
+
+.post-user {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.container-lazy-loading {
+  text-align: center;
+}
+
+.action-comment {
+  padding: 0px 44px;
+}
+
+.color-b7b7b7 {
+  color: #b7b7b7 !important;
+}
+
+.hide-comment {
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+.action-post {
+  padding: 10px 0px;
+}
+
+.width-100 {
+  width: 100%;
+}
