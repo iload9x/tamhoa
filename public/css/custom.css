@@ -1,0 +1,88 @@
+.server {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.server > li {
+  margin-bottom: 5px;
+}
+
+.server > li > a {
+  display: block;
+  background: #d65858;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 12px;
+  font-weight: bold;
+}
+
+.server > li > a > .hot {
+  background: yellow;
+  color: #d65858;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.top-level {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.top-level > li {
+  margin-bottom: 5px;
+}
+
+.top-level > li > .left {
+  font-weight: bold;
+  color: #d65858;
+  text-shadow: 1px 0px 3px #ffff00;
+}
+
+.post-item {
+  padding: 15px 0px;
+  border-top: 1px solid #ccc;
+}
+
+.post-item > .left > a {
+  width: 100%;
+  display: block;
+  border: 1px solid #ccc;
+}
+
+.post-item > .left > a > img {
+  width: 100%;
+}
+
+.post-item > .right > .title a {
+  color: #34a853;
+}
+
+.bannder-game > img {
+  width: 100%;
+  max-height: 330px;
+}
+.menu {
+  background: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.menu > li {
+  text-transform: uppercase;
+}
+.menu > li > a {
+  color: #34a853;
+}
+
+.menu > li > .active,
+.menu > li:hover > a {
+  background: #34a853;
+  color: #fff;
+}
+
+.color-34a853 {
+  color: #34a853 !important;
+}

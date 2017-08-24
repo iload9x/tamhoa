@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+      "name", "email", "password", "coin",
     ];
 
     /**
@@ -24,6 +24,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+      "password", "remember_token",
     ];
+
+    public function coin_histories() {
+      return $this->hasMany("App\CoinHistory", "user_id", "id");
+    }
+
+    public function update_coin($coin) {
+      return $this->update(["coin" => $this->coin - (int)$coin]);
+    }
 }
