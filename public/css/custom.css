@@ -54,6 +54,7 @@
 
 .post-item > .left > a > img {
   width: 100%;
+  min-height: 105px;
 }
 
 .post-item > .right > .title a {
@@ -75,6 +76,7 @@
 }
 .menu > li > a {
   color: #34a853;
+  font-weight: bold;
 }
 
 .menu > li > .active,
@@ -85,4 +87,24 @@
 
 .color-34a853 {
   color: #34a853 !important;
+}
+
+.post-tool-bar {
+  margin-top: 6px;
+}
+
+.header-category-detail > .name,
+.header-post-detail > .name {
+  font-weight: bold;
+  color: #d65858;
+}
+
+.header-post-detail > .time-created {
+  font-size: 14px;
+}
+
+.post-detail .category-name {
+  background: #b91e1e;
+  color: #fff;
+  padding: 3px 7px;
 }

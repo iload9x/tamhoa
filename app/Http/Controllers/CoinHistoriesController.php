@@ -50,16 +50,17 @@ class CoinHistoriesController extends Controller
         return redirect()->route("coin.create")->withErrors($validator->messages());
       $player = new PlayerRepository($server);
       //insert coin thanh knb
-      Auth::user()->update_coin($quantity);
+      Auth::user()->update_coin(-$quantity);
       Auth::user()->coin_histories()
         ->save(new CoinHistory([
           "changed" => $quantity,
+          "server_id" => 1,
           "remaining" => Auth::user()->coin
         ]
       ));
-      $player->insert_into_userorder($quantity, Auth::user()->email);
 
-      return redirect()->route("coin.create");
+      $player->insert_into_userorder($quantity, Auth::user()->email);
+      return redirect()->back()->with("success", "Đổi thành công {$quantity} KNB!");
     }
 
     public function show($id)

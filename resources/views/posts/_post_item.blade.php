@@ -1,0 +1,37 @@
+<div class="row post-item">
+  <div class="col-md-3 left">
+    <a href="">
+      <img src="{{ asset('avatars') }}/{{ $post->avatar }}" alt="">
+    </a>
+  </div>
+  <div class="col-md-9 right">
+    <p class="title">
+      <span><a href="{{ route('posts.show', $post) }}"><b>{{ $post->name }}</b></a></span>
+      <span class="pull-right">
+        <span>{{ $post->created_at->diffForHumans() }}</span>
+      </span>
+    </p>
+    <p class="desc">
+      {{ substr(strip_tags($post->content), 0, 350) }} ...
+    </p>
+  </div>
+  @if(Auth::check() && Auth::user()->is_admin())
+    <div class="col-md-12 post-tool-bar">
+      <span class="pull-right">
+        <button type="button"  data-toggle="dropdown" class="btn btn-default">
+          <i class="icon mdi mdi-globe"></i>
+        </button>
+        <ul role="menu" class="dropdown-menu">
+          <li><a>Public</a></li>
+          <li><a>Hide</a></li>
+        </ul>
+        <button type="button" class="btn btn-default">
+          <i class="icon mdi mdi-edit"></i>
+        </button>
+        <button type="button" class="btn btn-default">
+          <i class="icon mdi mdi-delete"></i>
+        </button>
+      </span>
+    </div>
+  @endif
+</div>

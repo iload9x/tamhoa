@@ -1,0 +1,236 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Repositories\CardRepository;
+use Illuminate\Http\Request;
+use Auth;
+
+class CardsController extends Controller
+{
+  private $config, $card;
+
+  public function __construct(CardRepository $CardRepository) {
+    $this->middleware("auth");
+    $this->card = $CardRepository;
+    $this->config = array(
+      "URLPAYMENT" => "http://megapay.com.vn:8080/megapay_server?",
+      "PROCESSING_CODE" => "10002",
+      "PROJECT_ID" => "82814",
+      "USER_NAME" => "wapa2pro@gmail.com",
+      "ACCOUNT" => "iload9x",
+      "PAYMENT_CHANNEL" => "1"  
+    );
+  }
+
+  public function create()
+  {
+    return view("cards.create");
+  }
+
+  public function store(Request $request)
+  {
+    $input_card = $request->input("card");
+
+    $card = $this->charging($input_card);
+    if ($card) {
+      $this->card->create([
+        "serial" => $input_card["serial"],
+        "pin" => $input_card["pin"],
+        "telcocode" => $input_card["telcoCode"],
+        "payment_amount" => $card
+      ]);
+      return redirect()->back()
+        ->with("success", "Nạp thẻ thành công. Mệnh giá ". number_format($card) ."đ!");
+    }
+
+    return redirect()->back()
+      ->withInput()
+      ->withErrors([
+        "card" => "Nạp thẻ không thành công. Vui lòng kiểm tra lại thông tin!"
+      ]);
+  }
+
+  public function show($id)
+  {
+    //
+  }
+
+  private function charging($card_info) {
+    $username = Auth::user()->name;
+    $info["cardSerial"] = $card_info["serial"];
+    $info["cardPin"] = $card_info["pin"];
+    $info["telcoCode"] = $card_info["telcoCode"];
+    
+    $project_id = $this->config["PROJECT_ID"];
+    $trans_id = $project_id . date("YmdHis") . rand(1, 99999);
+    $payment_data = array(
+      "serial" => $info["cardSerial"],
+      "mpin" => $info["cardPin"],
+      "transid" => $trans_id,
+      "telcocode" => $info["telcoCode"],
+      "username" => $this->config["USER_NAME"],
+      "account" => $username,
+      "payment_channel" => $this->config["PAYMENT_CHANNEL"]
+    );
+    
+    $send_payment_info = array(
+      "processing_code" => $this->config["PROCESSING_CODE"],
+      "project_id" => $this->config["PROJECT_ID"],
+      "data" => json_encode($payment_data)
+    );
+
+    $url = $this->config["URLPAYMENT"];
+    $url = $url . urlencode("request=" . json_encode($send_payment_info));
+    $response = $this->get_curl($url);  
+    if($response){
+      $json = json_decode($response, true);
+      $data = json_decode($json["data"], true);
+      $status = $json["status"];
+      $status = "00";
+      $data["payment_amount"] = 20000;
+
+      if($status){
+        if($status == "00") {
+          return $data["payment_amount"];
+        }
+        return false;
+      }
+      return false;
+    }
+    return false;
+  }
+/*
+   * function mã hóa chữ ký
+   * author: Vu Dinh Phuong
+   * date: 13/12/2016
+   */
+  private function signature_hash($transId, $config, $data)
+  {
+    return md5($config["partnerId"]."&".$data["cardSerial"]."&".$data["cardPin"]."&".$transId."&".$data["telcoCode"]."&".md5($config["password"]));
+  }
+
+  /*
+   * function tạo mã giao dịch (transid) theo partner
+   * author: Vu Dinh Phuong
+   * date: 13/12/2016
+   */
+  private function get_transid($config)
+  {
+    return $config['partnerId'].'_'.date('YmdHis').'_'.rand(0, 999);
+  }
+
+  /*
+   * function parse string response to Array
+   * it make developer to easy to process
+   * author: Vu Dinh Phuong
+   * date: 27/03/2014
+   */
+  private function parseArray($response)
+  {
+    $return = array();
+    $response = explode('&', $response);
+    if(!empty($response)){
+      foreach($response as $key => $value){
+        $data = explode('=', $value);
+        if(!empty($data[1])){
+          $return[$data[0]] = $data[1];
+        }
+      }
+      return $return;
+    }else{
+      return array();
+    }
+  }
+
+  /*
+   * function get curl
+   * author: Vu Dinh Phuong
+   * date: 13/12/2016
+   */
+  private function get_curl($url)
+  {
+    $curl = curl_init();
+
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
+
+    $str = curl_exec($curl);
+    if(empty($str)) $str = $this->curl_exec_follow($curl);
+    curl_close($curl);
+
+    return $str;
+  }
+  /*
+   * function dùng curl gọi đến link
+   * author: Vu Dinh Phuong
+   * date: 13/12/2016
+   */
+  private function curl_exec_follow($ch, &$maxredirect = null)
+  {
+    $user_agent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5)".
+    " Gecko/20041107 Firefox/1.0";
+    curl_setopt($ch, CURLOPT_USERAGENT, $user_agent );
+
+    $mr = $maxredirect === null ? 5 : intval($maxredirect);
+
+    if (ini_get('open_basedir') == '' && ini_get('safe_mode' == 'Off')) {
+
+      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $mr > 0);
+      curl_setopt($ch, CURLOPT_MAXREDIRS, $mr);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+    } else {
+
+      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+
+      if ($mr > 0)
+      {
+        $original_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+        $newurl = $original_url;
+
+        $rch = curl_copy_handle($ch);
+
+        curl_setopt($rch, CURLOPT_HEADER, true);
+        curl_setopt($rch, CURLOPT_NOBODY, true);
+        curl_setopt($rch, CURLOPT_FORBID_REUSE, false);
+        do
+        {
+          curl_setopt($rch, CURLOPT_URL, $newurl);
+          $header = curl_exec($rch);
+          if (curl_errno($rch)) {
+            $code = 0;
+          } else {
+            $code = curl_getinfo($rch, CURLINFO_HTTP_CODE);
+            if ($code == 301 || $code == 302) {
+              preg_match('/Location:(.*?)\n/', $header, $matches);
+              $newurl = trim(array_pop($matches));
+
+              if(!preg_match("/^https?:/i", $newurl)){
+                $newurl = $original_url . $newurl;
+              }
+            } else {
+              $code = 0;
+            }
+          }
+        } while ($code && --$mr);
+
+        curl_close($rch);
+
+        if (!$mr)
+        {
+          if ($maxredirect === null)
+            trigger_error('Too many redirects.', E_USER_WARNING);
+          else
+            $maxredirect = 0;
+
+          return false;
+        }
+        curl_setopt($ch, CURLOPT_URL, $newurl);
+      }
+    }
+    return curl_exec($ch);
+  }
+}

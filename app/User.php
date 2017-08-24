@@ -28,10 +28,21 @@ class User extends Authenticatable
     ];
 
     public function coin_histories() {
-      return $this->hasMany("App\CoinHistory", "user_id", "id");
+      return $this->hasMany("App\CoinHistory");
+    }
+    public function posts() {
+      return $this->hasMany("App\Post");
+    }
+
+    public function cards() {
+      return $this->hasMany("App\Card");
     }
 
     public function update_coin($coin) {
-      return $this->update(["coin" => $this->coin - (int)$coin]);
+      return $this->update(["coin" => $this->coin + (int)$coin]);
+    }
+
+    public function is_admin() {
+      return $this->role == 1;
     }
 }
