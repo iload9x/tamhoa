@@ -14,10 +14,6 @@ class PlayerController extends Controller
     $this->middleware("auth");
   }
 
-  public function index() {
-
-  }
-
   public function show($userName) {
     $database = request()->database;
 

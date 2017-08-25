@@ -22,8 +22,8 @@
           <i class="icon mdi mdi-globe"></i>
         </button>
         <ul role="menu" class="dropdown-menu">
-          <li><a>Public</a></li>
-          <li><a>Hide</a></li>
+          <li><a>@lang("others.public")</a></li>
+          <li><a>@lang("others.hide")</a></li>
         </ul>
         <button type="button" class="btn btn-default">
           <i class="icon mdi mdi-edit"></i>

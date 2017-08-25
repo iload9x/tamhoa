@@ -1,6 +1,6 @@
 <div class="list-top">
   <div class="panel panel-border-color panel-border-color-success">
-    <div class="panel-heading">BẢNG XẾP HẠNG</div>
+    <div class="panel-heading">@lang("others.rank_title")</div>
     <div class="panel-body">
       <ul class="top-level">
         <li>

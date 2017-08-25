@@ -25,24 +25,21 @@
       <img src="http://zuzugame.com/public/style/thietky.jpg" alt="">
     </div>
     <ul class="nav navbar-nav menu">
-      <li><a href="{{ route('home') }}" class="active">Trang chủ</a></li>
-      <li><a href="#chatbox">Chat box</a></li>
-      <li><a href="{{ route('coin.create') }}">ĐỔI XU</a></li>
-      <li><a href="{{ route('cards.create') }}">Nạp thẻ</a></li>
-      <li><a href="#support">Hỗ trợ</a></li>
+      <li><a href="{{ route('home') }}" class="active">@lang("others.menu_home")</a></li>
+      <li><a href="#chatbox">@lang("others.menu_chat_box")</a></li>
+      <li><a href="{{ route('coin.create') }}">@lang("others.menu_coin")</a></li>
+      <li><a href="{{ route('cards.create') }}">@lang("others.menu_payment")</a></li>
+      <li><a href="#support">@lang("others.menu_support")</a></li>
     </ul>
-
     <div class="row">
       <div class="col-md-3">
         @include("layouts.home._login")
         @include("layouts.home._list_server")
         @include("layouts.home._list_top")
       </div>
-
       <div class="col-md-9 ">
         @yield("content")
       </div>
-
     </div>
   </div>
   <script src="/assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
