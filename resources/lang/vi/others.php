@@ -1,0 +1,23 @@
+<?php 
+  return [
+    "public" => "Public",
+    "hide" => "Hide",
+    "home_title" => "Trang chủ",
+    "menu_home" => "Trang chủ",
+    "menu_chat_box" => "Chat box",
+    "menu_coin" => "ĐỔI XU",
+    "menu_payment" => "Nạp thẻ",
+    "menu_support" => "Hỗ trợ",
+    "enter_quantity" => "Nhập số lượng",
+    "daily_activity" => "HOẠT ĐỘNG HÀNG NGÀY",
+    "txt_hot" => "HOT",
+    "rank_title" => "BẢNG XẾP HẠNG",
+    "login_title" => "ĐĂNG NHẬP",
+    "txt_email" => "Email",
+    "txt_password" => "Mật khẩu",
+    "profile_title" => "THÔNG TIN CÁ NHÂN",
+    "change_password" => "Đổi mật khẩu",
+    "forget_password" => "Quên mật khẩu?",
+    "dont_have_account" => "Bạn chưa có tài khoản?",
+    "member" => "Member",
+  ];

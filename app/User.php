@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function is_admin() {
       return $this->role == 1;
     }
+
+    public function enter_account() {
+      return $this->email;
+    }
 }

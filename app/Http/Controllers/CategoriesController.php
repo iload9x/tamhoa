@@ -11,11 +11,6 @@ class CategoriesController extends Controller
       $this->middleware("auth", ["except" => ["show"]]);
     }
 
-    public function store(Request $request)
-    {
-      //
-    }
-
     public function show($id)
     {
       $category = Category::find($id);
@@ -28,20 +23,5 @@ class CategoriesController extends Controller
           ["category" => $category, "posts" => $posts]);
       }
       return redirect()->back();
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }
