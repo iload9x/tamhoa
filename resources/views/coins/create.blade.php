@@ -1,11 +1,11 @@
 @extends("layouts.application")
-
+@section("title", "Đổi xu")
 @section("content")
 <div class="panel panel-border-color panel-border-color-success">
   <div class="panel-heading">ĐỔI XU</div>
   <div class="panel-body doi-xu" username="{{ Auth::user()->email }}">
     <form action="{{ route('coin.store') }}" style="border-radius: 0px;"
-      class="form-horizontal group-border-dashed" method="POST">
+      class="form-horizontal group-border-dashed create-coin-form" method="POST">
       {{ csrf_field() }}
       @if($errors->has('coin'))
       <div class="form-group{{ $errors->has('coin') ? ' has-error' : '' }}">
@@ -19,10 +19,20 @@
         </div>
       </div>
       @endif
+      @if(Session::has("success"))
+      <div class="form-group has-success">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-6">
+            <span class="help-block">
+              <strong>{{ Session::get('success') }}</strong>
+            </span>
+        </div>
+      </div>
+      @endif
       <div class="form-group{{ $errors->has('server') ? ' has-error' : '' }}">
         <label class="col-sm-3 control-label">Chọn server:</label>
         <div class="col-sm-6">
-          <select name="server" class="select_server form-control input-sm">
+          <select name="server" class="select_server form-control input-sm" required="">
             <option value="">----Chọn máy chủ----</option>
             @if($servers->count())
               @foreach($servers as $server)

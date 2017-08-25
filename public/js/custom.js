@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $('.post-new-form, .create-card-form, .create-coin-form').parsley();
     $('body').on('change', '.select_server', function() {
       $thisbutton = $(this).parents('.doi-xu');
       var username = $thisbutton.attr('username');
@@ -19,6 +20,5 @@ $(document).ready(function() {
           }
         }
       });
-
     });
 });
