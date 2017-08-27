@@ -32,6 +32,6 @@ class CreateCardsTable extends Migration
      */
     public function down()
     {
-      Schema::dropIfExists("card_histories");
+      Schema::dropIfExists("cards");
     }
 }

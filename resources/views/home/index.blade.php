@@ -1,6 +1,7 @@
 @extends("layouts.application")
 @section("title", __("others.home_title"))
 @section("content")
+@include("home._event_menu")
 <div class="panel panel-border-color panel-border-color-success">
   <div class="panel-heading">@lang("others.daily_activity")
     @if(Auth::check() && Auth::user()->is_admin())

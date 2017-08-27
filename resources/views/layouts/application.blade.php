@@ -29,6 +29,7 @@
       <li><a href="#chatbox">@lang("others.menu_chat_box")</a></li>
       <li><a href="{{ route('coin.create') }}">@lang("others.menu_coin")</a></li>
       <li><a href="{{ route('cards.create') }}">@lang("others.menu_payment")</a></li>
+      <li><a href="{{ route('event.tichluy') }}">@lang("others.card_storage")</a></li>
       <li><a href="#support">@lang("others.menu_support")</a></li>
     </ul>
     <div class="row">

@@ -3,20 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\CardRepository;
-use App\Repositories\TichLuyRepository;
 use Illuminate\Http\Request;
 use Auth;
 
 class CardsController extends Controller
 {
-  private $card, $tich_luy;
+  private $card;
 
-  public function __construct(CardRepository $CardRepository,
-    TichLuyRepository $TichLuyRepository) {
-
+  public function __construct(CardRepository $CardRepository) {
     $this->middleware("auth");
     $this->card = $CardRepository;
-    $this->tich_luy = $TichLuyRepository;
   }
 
   public function create()
@@ -36,7 +32,8 @@ class CardsController extends Controller
         "telcocode" => $input_card["telcoCode"],
         "payment_amount" => $card
       ]);
-      $this->tich_luy->updateOrCreate([
+
+      Auth::user()->update_card_storage([
         "current" => $card,
         "total" => $card,
       ]);

@@ -34,6 +34,12 @@ Route::group(["namespace" => "Game", "prefix" => "game"], function() {
   Route::resource("players", "PlayerController");
 });
 
+Route::group(["namespace" => "Event", "prefix" => "event"], function() {
+  Route::get("tichluy", "CardStorageController@index")->name("event.tichluy");
+  Route::post("card_storage_histories", "CardStorageHistoryController@store")
+    ->name("card_storage_histories.store");
+});
+
 //custom routes
 
 Route::get("bai-viet/{slug}.{id}.html", "PostsController@show")->name("posts.show");
