@@ -11,8 +11,7 @@ class CategoriesController extends Controller
       $this->middleware("auth", ["except" => ["show"]]);
     }
 
-    public function show($id)
-    {
+    public function show($slug, $id) {
       $category = Category::find($id);
 
       if ($category) {

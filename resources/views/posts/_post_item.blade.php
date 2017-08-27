@@ -6,13 +6,13 @@
   </div>
   <div class="col-md-9 right">
     <p class="title">
-      <span><a href="{{ route('posts.show', $post) }}"><b>{{ $post->name }}</b></a></span>
+      <span><a href="{{ route('posts.show', [str_slug($post->name, '-'), $post]) }}"><b>{{ $post->name }}</b></a></span>
       <span class="pull-right">
         <span>{{ $post->created_at->diffForHumans() }}</span>
       </span>
     </p>
     <p class="desc">
-      {{ substr(strip_tags($post->content), 0, 350) }} ...
+      {{ str_limit(strip_tags($post->content), 350) }}
     </p>
   </div>
   @if(Auth::check() && Auth::user()->is_admin())

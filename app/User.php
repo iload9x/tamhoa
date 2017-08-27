@@ -38,6 +38,10 @@ class User extends Authenticatable
       return $this->hasMany("App\Card");
     }
 
+    public function tich_luy() {
+      return $this->hasOne("App\TichLuy");
+    }
+
     public function update_coin($coin) {
       return $this->update(["coin" => $this->coin + (int)$coin]);
     }
