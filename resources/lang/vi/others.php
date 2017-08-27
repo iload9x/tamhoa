@@ -20,4 +20,5 @@
     "forget_password" => "Quên mật khẩu?",
     "dont_have_account" => "Bạn chưa có tài khoản?",
     "member" => "Member",
+    "tich_luy" => "Tích lũy",
   ];

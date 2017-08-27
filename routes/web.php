@@ -4,27 +4,37 @@ Auth::routes();
 
 Route::get("/", "HomeController@index")->name("home");
 
-Route::resource("coin", "CoinHistoriesController", ["names" => [
-    "create" => "coin.create",
-    "store" => "coin.store"
+Route::resource("coin", "CoinHistoriesController", ["only" => [
+  "create", "store"
+], "names" => [
+  "create" => "coin.create",
+  "store" => "coin.store"
 ]]);
 
-Route::resource("posts", "PostsController", ["names" => [
-    "show" => "posts.show",
-    "store" => "posts.store"
+Route::resource("posts", "PostsController", ["only" => [
+  "store"
+], "names" => [
+  "store" => "posts.store"
 ]]);
 
-Route::resource("categories", "CategoriesController", ["names" => [
-    "show" => "categories.show",
-    "store" => "categories.store"
+Route::resource("categories", "CategoriesController", ["only" => [
+  "store"
+], "names" => [
+  "store" => "categories.store"
 ]]);
 
-Route::resource("cards", "CardsController", ["names" => [
-    "create" => "cards.create",
-    "show" => "cards.show",
-    "store" => "cards.store"
+Route::resource("cards", "CardsController", ["only" => [
+  "store", "create"
+], "names" => [
+  "create" => "cards.create",
+  "store" => "cards.store"
 ]]);
 
 Route::group(["namespace" => "Game", "prefix" => "game"], function() {
   Route::resource("players", "PlayerController");
 });
+
+//custom routes
+
+Route::get("bai-viet/{slug}.{id}.html", "PostsController@show")->name("posts.show");
+Route::get("the-loai/{slug}.{id}.html", "CategoriesController@show")->name("categories.show");

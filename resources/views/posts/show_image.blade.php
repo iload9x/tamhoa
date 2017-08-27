@@ -1,4 +1,4 @@
-@extends("layouts.application")
+@extends("layouts.post_image")
 @section("title", $post->name)
 @section("content")
 <div class="panel panel-border-color panel-border-color-success">
@@ -7,7 +7,7 @@
   </div>
   <div class="panel-body post-detail">
     <p>
-      <a href="{{ route('categories.show', [str_slug($post->category->name, '-'), $post->category]) }}">
+      <a href="{{ route('categories.show', $post->category) }}">
         <span class="category-name">{{ $post->category->name }}</span>
       </a>
       <span class="pull-right time-created">{{ $post->created_at->diffForHumans() }}</span>

@@ -58,6 +58,14 @@
           <span>@lang("coins.has_coin"):</span>
           <span class="pull-right">{{ number_format(Auth::user()->coin) }}</span>
         </p>
+        @if(Auth::user()->tich_luy()->count())
+          <p>
+            <span>@lang("others.tich_luy"):</span>
+            <span class="pull-right">
+              {{ number_format(Auth::user()->tich_luy->current) }}
+            </span>
+          </p>
+        @endif
         <p><span><a href="">@lang("others.change_password")</a></span></p>
         <div class="text-right">
           <div>
