@@ -37,6 +37,8 @@ Route::group(["namespace" => "Game", "prefix" => "game"], function() {
   ], "names" => [
     "show" => "playgame.show"
   ]]);
+
+  Route::get("old/{$id}", "PlayGameController@play_old");
 });
 
 Route::group(["namespace" => "Event", "prefix" => "event"], function() {
