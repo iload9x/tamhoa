@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CardStorageLevel extends Model
 {
+  protected $fillable = ["name", "item_id", "item_type", "quantity", "quanlity"];
+
   public function reward_items() {
     return $this->hasMany("App\RewardItem");
   }

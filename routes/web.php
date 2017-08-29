@@ -53,5 +53,6 @@ Route::group(["namespace" => "Event", "prefix" => "event"], function() {
 
 //custom routes
 
+Route::get("payment/napthe", "CardsController@create");
 Route::get("bai-viet/{slug}.{id}.html", "PostsController@show")->name("posts.show");
 Route::get("the-loai/{slug}.{id}.html", "CategoriesController@show")->name("categories.show");

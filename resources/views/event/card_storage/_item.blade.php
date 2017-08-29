@@ -18,17 +18,17 @@
         <ul class="ul-style">
           @if($card_storage_level->prop_items()->count())
             @foreach($card_storage_level->prop_items as $prop_item)
-              <li class="item_quanlity_{{ $prop_item->quanlity }}">
+              <li class="item_quanlity_{{ $prop_item->item->quanlity }}">
                 <span class="mdi mdi-chevron-right"></span>
-                <b>{{ $prop_item->quantity }} {{ $prop_item->name }}</b>
+                <b>{{ $prop_item->quantity }} {{ $prop_item->item->name }}</b>
               </li>
             @endforeach
           @endif
           @if($card_storage_level->equip_items()->count())
             @foreach($card_storage_level->equip_items as $equip_item)
-              <li class="item_quanlity_{{ $equip_item->quanlity }}">
+              <li class="item_quanlity_{{ $equip_item->item->quanlity }}">
                 <span class="mdi mdi-chevron-right"></span>
-                <b>{{ $equip_item->quantity }} {{ $equip_item->name }} (Trang bị)</b>
+                <b>{{ $equip_item->quantity }} {{ $equip_item->item->name }} (Trang bị)</b>
               </li>
             @endforeach
           @endif
