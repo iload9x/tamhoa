@@ -25,12 +25,12 @@
       <img src="http://img.zing.vn/upload/jx2/source/Event/2017/server-hoaung-2000.jpg" alt="">
     </div>
     <ul class="nav navbar-nav menu">
-      <li><a href="{{ route('home') }}" class="active">@lang("others.menu_home")</a></li>
+      <li><a href="{{ route('home') }}/">@lang("others.menu_home")</a></li>
       <li><a href="#chatbox">@lang("others.menu_chat_box")</a></li>
       <li><a href="{{ route('coin.create') }}">@lang("others.menu_coin")</a></li>
       <li><a href="{{ route('cards.create') }}">@lang("others.menu_payment")</a></li>
       <li><a href="{{ route('event.tichluy') }}">@lang("others.card_storage")</a></li>
-      <li><a href="{{ route('card_daily.create') }}">@lang("others.payment_daily")</a></li>
+      <li><a href="{{ route('card_daily.create') }}" class="menu-active">@lang("others.payment_daily")</a></li>
       <li><a target="__blank" href="https://www.facebook.com/game.mth">@lang("others.menu_support")</a></li>
     </ul>
     <div class="row">
@@ -54,10 +54,16 @@
   <script src="/{{ \App\Helpers\AssetHelper::path() }}js/custom.js" type="text/javascript"></script>
   <script type="text/javascript">
   $(document).ready(function() {
-    //initialize the javascript
+    $(".menu a").each(function(index) {
+      if ($(this).attr('href') == window.location.href) {
+        $(this).addClass('active')
+      }
+    });
+
     $("#post-editor").summernote({height:150});
     App.init();
   });
   </script>
+  @yield("javascript")
 </body>
 </html>

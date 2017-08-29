@@ -67,6 +67,32 @@
         </div>
       </div>
     </form>
+    @include("cards._histories")
   </div>
 </div>
+@endsection
+
+@section("javascript")
+<script>
+  $(document).ready(function() {
+    $('body').on('click', '.pagination a', function() {
+      $thisbutton = $(this);
+      var page = $thisbutton.attr('href');
+
+      $.ajax({
+        url: page,
+        type: 'GET',
+        dataType: 'JSON',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        success: function (result) {
+          if (result.status) {
+            $thisbutton.parents('.card_histories').replaceWith(result.html);
+          }
+        }
+      });
+
+      return false;
+    });
+  });
+</script>
 @endsection
