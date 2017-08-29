@@ -169,7 +169,7 @@ class DatabaseSeeder extends Seeder
         $card_storage_level = CardStorageLevel::where(["level" => $level])->first();
         if ($card_storage_level) {
           foreach ($items as $item_id => $quantity) {
-            $card_storage_level->reward_items()->create([
+            $card_storage_level->reward_items()->insert([
               "item_id" => $item_id,
               "item_type" => 0,
               "quantity" => $quantity,
