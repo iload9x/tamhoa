@@ -5,9 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
   <link rel="Shortcut Icon" href="favicon.ico" />
   <link rel="Bookmark" href="favicon.ico" />
+  <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
   <script src="/{{ \App\Helpers\AssetHelper::path() }}game/js/swfobject.js" type="text/javascript"></script>
   <script src="/{{ \App\Helpers\AssetHelper::path() }}game/js/rightclick.js" type="text/javascript"></script>
   <script src="/{{ \App\Helpers\AssetHelper::path() }}game/js/swffit.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/{{ \App\Helpers\AssetHelper::path() }}game/css/style.css">
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#flashcontent").height($(window).height() - $(".playgame-menu").height() - 3);
+    });
+  </script>
   <title>{{ $info_server["title"] }} - TamHoa2.Top</title>
   <script type="text/javascript">
     function navigateToSignIn(){window.onbeforeunload=null;window.location.href='/';}
@@ -26,13 +33,19 @@
     swfobject.embedSWF("/{{ \App\Helpers\AssetHelper::path() }}client/dynamic/version0/GameLoader.swf", "customRightClick", "100%", "100%", "9.0.0", "expressInstall.swf", flashvars, params);
   </script>
 </head>
-<body id="flashcontent" scroll="no" onload="RightClick.init();" bgcolor="#000000" style="margin:0;height:100vh;"><div class="se-pre-con" id="se-pre-con"></div>
+<body bgcolor="#000000" style="margin:0;height:100vh;">
+  <div class="playgame-menu">
+    <ul class="menu">
+      @include("layouts.home._menu_items")
+    </ul>
+  </div>
+  <div id="flashcontent" scroll="no" onload="RightClick.init();" style="height: 100%">
   <div id="customRightClick">
     <p>FLASH quá cũ, Hãy cập nhật để chơi</p>
     <p><a href="http://www.adobe.com/go/getflashplayer">
       <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
     </a></p>
   </div>
-  <div style="display:block;position:absolute;z-order=-100"></div>
+  </div>
 </body>
 </html>
