@@ -32,7 +32,11 @@ Route::resource("cards", "CardsController", ["only" => [
 
 Route::group(["namespace" => "Game", "prefix" => "game"], function() {
   Route::resource("players", "PlayerController");
-  Route::resource("choi-game", "PlayGameController");
+  Route::resource("choi-game", "PlayGameController", ["only" => [
+    "show"
+  ], "names" => [
+    "show" => "playgame.show"
+  ]]);
 });
 
 Route::group(["namespace" => "Event", "prefix" => "event"], function() {

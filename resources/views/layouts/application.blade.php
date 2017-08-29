@@ -22,7 +22,7 @@
 <body>
   <div class="container">
     <div class="bannder-game">
-      <img src="http://zuzugame.com/public/style/thietky.jpg" alt="">
+      <img src="http://img.zing.vn/upload/jx2/source/Event/2017/server-hoaung-2000.jpg" alt="">
     </div>
     <ul class="nav navbar-nav menu">
       <li><a href="{{ route('home') }}" class="active">@lang("others.menu_home")</a></li>

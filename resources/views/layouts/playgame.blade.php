@@ -1,4 +1,9 @@
+<i>
+  
 
+
+  
+</i>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +14,7 @@
   <script src="/game/js/swfobject.js" type="text/javascript"></script>
   <script src="/game/js/rightclick.js" type="text/javascript"></script>
   <script src="/game/js/swffit.js" type="text/javascript"></script>
-  <title></title>
+  <title>{{ $info_server["title"] }} - TamHoa2.Top</title>
   <script type="text/javascript">
     function navigateToSignIn(){window.onbeforeunload=null;window.location.href='/';}
     var flashvars = {
