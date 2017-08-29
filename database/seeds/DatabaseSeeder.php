@@ -149,6 +149,7 @@ class DatabaseSeeder extends Seeder
         "1234579" => ["quanlity" => 4, "name" => "Túi bảo thạch Chí Tôn"],
         "1234578" => ["quanlity" => 5, "name" => "Túi bảo thạch Hỗn Thiên"],
         "110014" => ["quanlity" => 4, "name" => "PET Hàng Long Tôn Giả"],
+        "140037" => ["quanlity" => 4, "name" => "Thần binh cấp 1"],
         "1234572" => ["quanlity" => 5, "name" => "Thần binh cấp 2"],
         "1234573" => ["quanlity" => 5, "name" => "Thần binh cấp 3"],
         "1234571" => ["quanlity" => 5, "name" => "Túi Trang Bị [Hỏa Thần] Lv 90"],
