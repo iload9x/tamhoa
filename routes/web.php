@@ -45,6 +45,9 @@ Route::group(["namespace" => "Event", "prefix" => "event"], function() {
   Route::get("tichluy", "CardStorageController@index")->name("event.tichluy");
   Route::post("card_storage_histories", "CardStorageHistoryController@store")
     ->name("card_storage_histories.store");
+
+  Route::get("nap-the-hang-ngay",  "CardDailyController@create")->name("card_daily.create");
+  Route::post("nap-the-hang-ngay",  "CardDailyController@store")->name("card_daily.store");
 });
 
 Route::group(["namespace" => "Event", "prefix" => "event"], function() {
