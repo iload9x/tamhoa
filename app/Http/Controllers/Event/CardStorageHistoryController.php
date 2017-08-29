@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Auth;
+use Cookie;
 use Validator;
 
 class CardStorageHistoryController extends Controller
@@ -35,6 +36,7 @@ class CardStorageHistoryController extends Controller
     $player = new PlayerRepository($server);
     $player->insert_into_userprop($card_storage_level->prop_items(), Auth::user()->enter_account());
     $player->insert_into_userequip($card_storage_level->equip_items(), Auth::user()->enter_account());
+    Cookie::queue("waiting_for_update_" . $server, time() + 60 * 5 , 5);
 
     return redirect()->back()->with("success", __("others.alert_received_reward_item_success"));
   }
