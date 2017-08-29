@@ -32,6 +32,13 @@ Route::resource("cards", "CardsController", ["only" => [
 
 Route::group(["namespace" => "Game", "prefix" => "game"], function() {
   Route::resource("players", "PlayerController");
+  Route::resource("choi-game", "PlayGameController");
+});
+
+Route::group(["namespace" => "Event", "prefix" => "event"], function() {
+  Route::get("tichluy", "CardStorageController@index")->name("event.tichluy");
+  Route::post("card_storage_histories", "CardStorageHistoryController@store")
+    ->name("card_storage_histories.store");
 });
 
 Route::group(["namespace" => "Event", "prefix" => "event"], function() {
