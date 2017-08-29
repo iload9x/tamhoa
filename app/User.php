@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\CardStorage;
 
 class User extends Authenticatable
 {
@@ -38,12 +39,29 @@ class User extends Authenticatable
       return $this->hasMany("App\Card");
     }
 
-    public function tich_luy() {
-      return $this->hasOne("App\TichLuy");
+    public function card_storage() {
+      return $this->hasOne("App\CardStorage");
+    }
+
+    public function card_storage_histories() {
+      return $this->hasMany("App\CardStorageHistory");
     }
 
     public function update_coin($coin) {
       return $this->update(["coin" => $this->coin + (int)$coin]);
+    }
+
+    public function update_card_storage($card_storage) {
+      if ($this->card_storage->count()) {
+        $this->card_storage()->update([
+          "current" => $this->card_storage->current + (int)$card_storage["current"],
+          "total" => $this->card_storage->total + $card_storage["total"]
+        ]);
+
+        return true;
+      }
+
+      return false;
     }
 
     public function is_admin() {

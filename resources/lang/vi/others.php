@@ -20,5 +20,8 @@
     "forget_password" => "Quên mật khẩu?",
     "dont_have_account" => "Bạn chưa có tài khoản?",
     "member" => "Member",
-    "tich_luy" => "Tích lũy",
+    "card_storage" => "Tích lũy",
+    "card_storage_title" => "Tích lũy",
+    "greater_my_card_storage" => "Tích lũy của bạn không đủ!",
+    "alert_received_reward_item_success" => "Nhận thưởng thành công!!",
   ];

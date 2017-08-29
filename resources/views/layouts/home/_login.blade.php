@@ -58,11 +58,11 @@
           <span>@lang("coins.has_coin"):</span>
           <span class="pull-right">{{ number_format(Auth::user()->coin) }}</span>
         </p>
-        @if(Auth::user()->tich_luy()->count())
+        @if(Auth::user()->card_storage()->count())
           <p>
-            <span>@lang("others.tich_luy"):</span>
+            <span>@lang("others.card_storage"):</span>
             <span class="pull-right">
-              {{ number_format(Auth::user()->tich_luy->current) }}
+              {{ number_format(Auth::user()->card_storage->current) }}
             </span>
           </p>
         @endif

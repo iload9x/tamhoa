@@ -108,3 +108,51 @@
   color: #fff;
   padding: 3px 7px;
 }
+
+.item_quanlity_0 {
+  color: #868282;
+}
+
+.item_quanlity_1 {
+  color: #34a853;
+}
+
+.item_quanlity_2 {
+  color: #7d8cf5;
+}
+
+.item_quanlity_3 {
+  color: #9e46a7;
+}
+
+.item_quanlity_4 {
+  color: #ee815a;
+}
+
+
+.item_quanlity_5 {
+  color: #d65858;
+}
+
+.ul-style {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.body-card-storage {
+  border-left: 1px solid #d65858;
+  border-right: 1px solid #d65858;
+  border-bottom: 1px solid #d65858;
+  padding-top: 18px !important;
+}
+
+.title-card-storage {
+  border: 1px solid #d65858;
+}
+
+.title-card-storage > a {
+  font-weight: bold;
+  color: #fff !important;
+  background: #d65858;
+}
