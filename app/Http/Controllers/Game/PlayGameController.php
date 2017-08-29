@@ -14,11 +14,13 @@ class PlayGameController extends Controller
   }
 
   public function show($id) {
-    $server = Server::find($id);
+    $server = Server::where(["server_id" => $id])->first();
+
     if ($server) {
       $info_server = [
+        "title" => $server->name,
         "enterAccount" => Auth::user()->enter_account(),
-        "ip" => "127.0.0.1",
+        "ip" => "103.75.182.197",
         "port" => $server->port
       ];
       return view("layouts.playgame", ["info_server" => $info_server]);
