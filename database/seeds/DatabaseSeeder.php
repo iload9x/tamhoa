@@ -170,11 +170,9 @@ class DatabaseSeeder extends Seeder
         if ($card_storage_level) {
           foreach ($items as $item_id => $quantity) {
             $card_storage_level->reward_items()->create([
-              "name" => "props",
               "item_id" => $item_id,
               "item_type" => 0,
               "quantity" => $quantity,
-              "quanlity" => 1
             ]);
           }
         }
