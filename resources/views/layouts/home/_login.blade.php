@@ -47,7 +47,7 @@
       <div class="panel-heading">@lang("others.profile_title")</div>
       <div class="panel-body">
         <p>
-          <span><img src="/icons/1.png" alt=""> <b>{{ Auth::user()->name }}</b></span>
+          <span><img src="/{{ \App\Helpers\AssetHelper::path() }}icons/1.png" alt=""> <b>{{ Auth::user()->name }}</b></span>
           <span class="pull-right">(@lang("others.member"))</span>
         </p>
         <p>

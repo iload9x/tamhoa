@@ -1,7 +1,7 @@
 <div class="row post-item">
   <div class="col-md-3 left">
     <a href="">
-      <img src="{{ asset('avatars') }}/{{ $post->avatar }}" alt="">
+      <img src="/{{ \App\Helpers\AssetHelper::path() }}avatars/{{ $post->avatar }}" alt="">
     </a>
   </div>
   <div class="col-md-9 right">

@@ -28,7 +28,15 @@ class CardsController extends Controller
 
     if ($card) {
       if (Auth::user()->cards->count() == 0) {
-        $card += 100000;
+        Auth::user()->increase_card_storage([
+          "current" => $card + 100000,
+          "total" => $card,
+        ]);
+      } else {
+        Auth::user()->increase_card_storage([
+          "current" => $card,
+          "total" => $card,
+        ]);
       }
 
       $this->card->create([
@@ -37,12 +45,6 @@ class CardsController extends Controller
         "telcocode" => $input_card["telcoCode"],
         "payment_amount" => $card
       ]);
-
-      Auth::user()->update_card_storage([
-        "current" => $card,
-        "total" => $card,
-      ]);
-
       return redirect()->back()
         ->with("success", __("cards.payment_success", ["amount" => number_format($card)])); 
     }

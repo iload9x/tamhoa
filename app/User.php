@@ -51,14 +51,31 @@ class User extends Authenticatable
       return $this->update(["coin" => $this->coin + (int)$coin]);
     }
 
-    public function update_card_storage($card_storage) {
-      if ($this->card_storage->count()) {
+    public function decrease_card_storage($card_storage) {
+      if ($this->card_storage()->count()) {
         $this->card_storage()->update([
           "current" => $this->card_storage->current + (int)$card_storage["current"],
           "total" => $this->card_storage->total + $card_storage["total"]
         ]);
 
         return true;
+      }
+
+      return false;
+    }
+
+    public function increase_card_storage($card_storage) {
+      if ($this->card_storage()->count()) {
+        $this->card_storage()->update([
+          "current" => $this->card_storage->current + (int)$card_storage["current"],
+          "total" => $this->card_storage->total + $card_storage["total"]
+        ]);
+      } else {
+        $this->card_storage()->create([
+          "current" => $card_storage["current"],
+          "total" => $card_storage["total"]
+        ]);
+
       }
 
       return false;

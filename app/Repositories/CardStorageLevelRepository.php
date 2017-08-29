@@ -30,7 +30,7 @@ class CardStorageLevelRepository
     $card_storage_level = $this->find_by($name, $value);
 
     if ($card_storage_level) {
-      Auth::user()->update_card_storage([
+      Auth::user()->decrease_card_storage([
         "current" => -$card_storage_level->level,
         "total" => 0
       ]);
