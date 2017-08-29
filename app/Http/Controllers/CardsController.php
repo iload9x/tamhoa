@@ -18,7 +18,7 @@ class CardsController extends Controller
 
   public function create(Request $request)
   {
-    $cards = Auth::user()->cards()->latest()->paginate(2);
+    $cards = Auth::user()->cards()->latest()->paginate(5);
 
     if ($request->ajax() && $request->page) {
       return response()->json([
