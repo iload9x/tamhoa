@@ -15,6 +15,7 @@
     "login_title" => "ĐĂNG NHẬP",
     "txt_email" => "Email",
     "txt_password" => "Mật khẩu",
+    "txt_password_confirmation" => "Nhập lại mật khẩu",
     "profile_title" => "THÔNG TIN CÁ NHÂN",
     "change_password" => "Đổi mật khẩu",
     "forget_password" => "Quên mật khẩu?",
@@ -24,4 +25,7 @@
     "card_storage_title" => "Tích lũy",
     "greater_my_card_storage" => "Tích lũy của bạn không đủ!",
     "alert_received_reward_item_success" => "Nhận thưởng thành công!!",
+    "name" => "Tên hiện thị",
+    "register_title" => "Đăng ký tài khoản",
+    "login_title" => "Đăng nhập",
   ];

@@ -17,7 +17,7 @@
     enterIp:"{{ $info_server['ip'] }}",
     enterPort:"{{ $info_server['port'] }}",
     serverId:"1",
-    fileUrl:"http://tamhoa2.top:88",
+    fileUrl:"http://tamhoa2.top:88/",
     rechargeUrl:"/",
     bbsUrl:"/",
     homeUrl:"/"};
