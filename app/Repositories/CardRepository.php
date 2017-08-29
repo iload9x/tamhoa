@@ -69,7 +69,7 @@ class CardRepository
       $data = json_decode($json["data"], true);
       $status = $json["status"];
       // $status = "00";
-      // $data["payment_amount"] = 200000;
+      // $data["payment_amount"] = 20000;
 
       if($status){
         if($status == "00") {
