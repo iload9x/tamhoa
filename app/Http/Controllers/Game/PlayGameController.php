@@ -18,6 +18,12 @@ class PlayGameController extends Controller
     $server = Server::where(["server_id" => $id])->first();
     if ($server) {
       $time_out = Cookie::get("waiting_for_update_" . $server->database);
+      $time_open = strtotime($server->time_open) - time(); 
+      if($time_open > 0) {
+        return view("layouts._waiting_for_open_server",[
+          "time_open" => $time_open
+        ]);
+      }
 
       if ($time_out) {
         return view("layouts._waiting_to_update",[
