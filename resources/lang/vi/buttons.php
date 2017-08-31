@@ -9,4 +9,5 @@
     "can_receive" => "Có thể nhận",
     "received" => "Đã nhận",
     "can_not_receive" => "Chưa thể nhận",
+    "register" => "Đăng ký",
   ];
