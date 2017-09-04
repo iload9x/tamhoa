@@ -98,7 +98,7 @@ body {
 }
 
 .header-category-detail > .name,
-.header-post-detail > .name {
+.header-post-detail > .post-name {
   font-weight: bold;
   color: #d65858;
 }
@@ -169,3 +169,11 @@ body {
   background: #d65858 !important;
   color: #fff !important;
 }
+
+.width-100 {
+  width: 100% !important;
+}
+
+/*.panel-heading {
+  text-transform: uppercase;
+}*/

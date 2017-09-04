@@ -33,4 +33,5 @@
     "not_payment_today" => "Hôm nay bạn chưa nạp thẻ! Vui lòng nạp thẻ để nhận thưởng!",
     "please_out_game" => "Lưu ý: Vui lòng thoát game trước khi nhận thưởng!",
     "you_given" => "Hôm nay bạn đã nhận rồi!",
+    "admin_manager" => "Admin Manager",
   ];

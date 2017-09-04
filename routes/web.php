@@ -12,9 +12,11 @@ Route::resource("coin", "CoinHistoriesController", ["only" => [
 ]]);
 
 Route::resource("posts", "PostsController", ["only" => [
-  "store"
+  "store", "update", "destroy"
 ], "names" => [
-  "store" => "posts.store"
+  "store" => "posts.store",
+  "update" => "posts.update",
+  "destroy" => "posts.destroy"
 ]]);
 
 Route::resource("categories", "CategoriesController", ["only" => [
@@ -61,3 +63,9 @@ Route::group(["namespace" => "Event", "prefix" => "event"], function() {
 Route::get("payment/napthe", "CardsController@create");
 Route::get("bai-viet/{slug}.{id}.html", "PostsController@show")->name("posts.show");
 Route::get("the-loai/{slug}.{id}.html", "CategoriesController@show")->name("categories.show");
+
+//-------------------------ADMIN-----------------------------------------
+
+Route::group(["namespace" => "Admin", "prefix" => "admin"], function() {
+  Route::get("/", "HomeController@index")->name("admin");
+});
