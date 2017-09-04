@@ -164,3 +164,8 @@ body {
 .color-d65858 {
   color: #d65858 !important;
 }
+
+.menu-active {
+  background: #d65858 !important;
+  color: #fff !important;
+}

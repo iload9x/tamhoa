@@ -16,9 +16,17 @@ class CardsController extends Controller
     $this->card = $CardRepository;
   }
 
-  public function create()
+  public function create(Request $request)
   {
-    return view("cards.create");
+    $cards = Auth::user()->cards()->latest()->paginate(2);
+
+    if ($request->ajax() && $request->page) {
+      return response()->json([
+        "status" => true,
+        "html" => view("cards._histories", ["cards" => $cards])->render()
+      ]);
+    }
+    return view("cards.create", ["cards" => $cards]);
   }
 
   public function store(Request $request)
