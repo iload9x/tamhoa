@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
 use App\CardStorage;
 
 class User extends Authenticatable
@@ -45,6 +46,30 @@ class User extends Authenticatable
 
     public function card_storage_histories() {
       return $this->hasMany("App\CardStorageHistory");
+    }
+
+    public function card_daily() {
+      return $this->hasMany("App\CardDaily");
+    }
+
+    public function card_daily_is_today() {
+      $card_daily = $this->card_daily()->latest()->first();
+
+      if ($card_daily) {
+        $dt = Carbon::parse($card_daily->created_at);
+        return $dt->isToday();
+      }
+      return false;
+    }
+
+    public function card_is_today() {
+      $card = $this->cards()->latest()->first();
+
+      if ($card) {
+        $dt = Carbon::parse($card->created_at);
+        return $dt->isToday();
+      }
+      return false;
     }
 
     public function update_coin($coin) {

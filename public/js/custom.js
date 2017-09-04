@@ -21,24 +21,4 @@ $(document).ready(function() {
         }
       });
     });
-
-    // $('body').on('click', '.btn-receive-reward-item', function() {
-    //   // $button = $(this).parents('.card_storage_level');
-    //   // var card_storage_level_id = $button.attr('card-storage-level-id');
-
-    //   // $.ajax({y
-    //   //   url: '/event/card_storage_histories',
-    //   //   type: 'POST',
-    //   //   dataType: 'JSON',
-    //   //   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-    //   //   data: {
-    //   //     id: card_storage_level_id
-    //   //   },
-    //   //   success: function (result) {
-    //   //     if (result.status) {
-    //   //       $button.replaceWith(result.html);
-    //   //     }
-    //   //   }
-    //   // });
-    // });
 });
