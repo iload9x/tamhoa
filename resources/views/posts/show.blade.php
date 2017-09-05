@@ -1,20 +1,67 @@
 @extends("layouts.application")
 @section("title", $post->name)
 @section("content")
-<div class="panel panel-border-color panel-border-color-success">
-  <div class="panel-heading header-post-detail">
-  <span class="name">{{ $post->name }}</span>
-  </div>
-  <div class="panel-body post-detail">
-    <p>
-      <a href="{{ route('categories.show', [str_slug($post->category->name, '-'), $post->category]) }}">
-        <span class="category-name">{{ $post->category->name }}</span>
-      </a>
-      <span class="pull-right time-created">{{ $post->created_at->diffForHumans() }}</span>
-    </p>
-    <div>
-      {!! $post->content !!}
-    </div>
-  </div>
-</div>
+  @include("posts._detail")
+@endsection
+@section("javascript")
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('body').on('click', '.post-edit', function() {
+        $thisbutton = $(this).parents('.post-item');
+        var content = $thisbutton.find('.post-content');
+        var title = $thisbutton.find('.post-name');
+
+        content.replaceWith('<textarea name="" id="post-content">'+ content.html() +'</textarea>');
+        title.replaceWith('<input type="text" class="width-100" id="post-name" value="'+ title.html().trim() +'"/>');
+        $('#post-content').summernote({height: $('.post-content').height()});
+        $('.post-buttons').show();
+      });
+
+      $('body').on('click', '.post-cancel', function() {
+        $thisbutton = $(this).parents('.post-item');
+        var url = window.location.href;
+
+        $.ajax({
+          url: url,
+          type: 'GET',
+          dataType: 'JSON',
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          success: function (result) {
+            if (result.status) {
+              $thisbutton.replaceWith(result.html);
+            }
+          }
+        });
+      });
+
+      $('body').on('click', '.post-update', function() {
+        $thisbutton = $(this).parents('.post-item');
+        var name = $("#post-name").val();
+        var content = $("#post-content").val();
+
+        $.ajax({
+          url: '{{ route("posts.update", $post) }}',
+          type: 'PUT',
+          dataType: 'JSON',
+          data: {
+            name: name,
+            content: content
+          },
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          success: function (result) {
+            if (result.status) {
+              $thisbutton.replaceWith(result.html);
+            }
+          }
+        });
+      });
+
+      $('body').on('click', '.post-delete', function() {
+        var r = confirm("Bạn có chắc chắn muốn xóa!");
+        if (r == false) {
+            return false;
+        }
+      });
+    });
+  </script>
 @endsection

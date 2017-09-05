@@ -67,6 +67,9 @@
           </p>
         @endif
         <p><span><a href="">@lang("others.change_password")</a></span></p>
+        @if(Auth::user()->is_admin())
+          <p><span><a href="{{ route('admin') }}">@lang("others.admin_manager")</a></span></p>
+        @endif
         <div class="text-right">
           <div>
             <a href="{{ route('logout') }}" class="btn btn-success"
