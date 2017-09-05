@@ -7,6 +7,7 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('body').on('click', '.post-edit', function() {
+        $(this).attr('disabled', 1);
         $thisbutton = $(this).parents('.post-item');
         var content = $thisbutton.find('.post-content');
         var title = $thisbutton.find('.post-name');
@@ -18,6 +19,7 @@
       });
 
       $('body').on('click', '.post-cancel', function() {
+        $(this).attr('disabled', 1).html($(this).html() + '...');
         $thisbutton = $(this).parents('.post-item');
         var url = window.location.href;
 
@@ -35,6 +37,7 @@
       });
 
       $('body').on('click', '.post-update', function() {
+        $(this).attr('disabled', 1).html($(this).html() + '...');
         $thisbutton = $(this).parents('.post-item');
         var name = $("#post-name").val();
         var content = $("#post-content").val();
