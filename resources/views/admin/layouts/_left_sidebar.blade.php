@@ -55,19 +55,11 @@
                 </li>
               </ul>
             </li>
-            <li class="parent">
-              <a href="#">
-                <i class="icon mdi mdi-inbox"></i>
+            <li>
+              <a href="{{ route('admin.cards.index') }}">
+                <i class="icon mdi mdi-home"></i>
                 <span>Thẻ cào</span>
               </a>
-              <ul class="sub-menu">
-                <li>
-                  <a href="email-inbox.html">Thêm mới</a>
-                </li>
-                <li>
-                  <a href="email-read.html">Tổng quan</a>
-                </li>
-              </ul>
             </li>
           </ul>
         </div>

@@ -68,12 +68,24 @@ Route::get("the-loai/{slug}.{id}.html", "CategoriesController@show")->name("cate
 
 Route::group(["namespace" => "Admin", "prefix" => "admin"], function() {
   Route::get("/", "HomeController@index")->name("admin");
-  Route::resource("servers", "ServerController", ["only" => [
-    "index", "update", "store", "destroy"
+  Route::get("check-email", "UserController@check_email")->name("admin.check_email");
+
+  Route::resource("servers", "ServerController", ["except" => [
+    "create", "edit", "show"
   ], "names" => [
     "index" => "admin.servers.index",
     "store" => "admin.servers.store",
     "destroy" => "admin.servers.destroy",
     "update" => "admin.servers.update"
   ]]);
+
+  Route::resource("cards", "CardController", ["only" => [
+    "index", "store", "destroy"
+  ], "names" => [
+    "index" => "admin.cards.index",
+    "store" => "admin.cards.store",
+    "destroy" => "admin.cards.destroy",
+    "update" => "admin.cards.update"
+  ]]);
+
 });
