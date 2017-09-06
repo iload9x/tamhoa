@@ -68,4 +68,12 @@ Route::get("the-loai/{slug}.{id}.html", "CategoriesController@show")->name("cate
 
 Route::group(["namespace" => "Admin", "prefix" => "admin"], function() {
   Route::get("/", "HomeController@index")->name("admin");
+  Route::resource("servers", "ServerController", ["only" => [
+    "index", "update", "store", "destroy"
+  ], "names" => [
+    "index" => "admin.servers.index",
+    "store" => "admin.servers.store",
+    "destroy" => "admin.servers.destroy",
+    "update" => "admin.servers.update"
+  ]]);
 });

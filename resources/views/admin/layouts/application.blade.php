@@ -14,6 +14,10 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" type="text/css"
+      href="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/x-editable/bootstrap3-editable/css/bootstrap-editable.css"/>
+    <link rel="stylesheet" type="text/css"
+      href="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/x-editable/inputs-ext/typeaheadjs/lib/typeahead.js-bootstrap.css"/>
     <link rel="stylesheet" href="/{{ \App\Helpers\AssetHelper::path() }}assets/css/style.css" type="text/css"/>
   </head>
   <body>
@@ -219,14 +223,24 @@
         </div>
       </nav>
     </div>
-    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
-    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/jquery/jquery.min.js"
+      type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"
+      type="text/javascript"></script>
     <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/js/main.js" type="text/javascript"></script>
-    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/bootstrap/dist/js/bootstrap.min.js"
+      type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/parsley/parsley.min.js"
+      type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/jquery.maskedinput/jquery.maskedinput.min.js"
+      type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/x-editable/bootstrap3-editable/js/bootstrap-editable.min.js"
+      type="text/javascript"></script>
     <script type="text/javascript">
       $(document).ready(function(){
         //initialize the javascript
         App.init();
+        var parsley = $('form').parsley();
       });
     </script>
    @yield("javascript")
