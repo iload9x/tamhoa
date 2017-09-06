@@ -20,28 +20,43 @@ class CardRepository
     );
   }
 
-  public function create($card) {
-    Auth::user()->cards()->save(new Card([
-      "serial" => $card["serial"],
-      "pin" => $card["pin"],
-      "amount" => $card["payment_amount"],
-      "telcocode" => $card["telcocode"],
-      "coin" => $this->rate_coin($card["payment_amount"])
-    ]));
-
-    Auth::user()->update_coin($this->rate_coin($card["payment_amount"]));
+  public function latest() {
+    return Card::latest();
   }
 
-  public function rate_coin($payment_amount = 0) {
-    return 10 * $payment_amount;
+  public function find_by($colunm, $value) {
+    return Card::where($colunm, $value)->first();
+  }
+
+  public function latest_paginate($per_page = 10) {
+    return $this->latest()->paginate($per_page, ["*"], "card_page");
+  }
+
+  public function whereBetween($colunm, $value) {
+    return Card::whereBetween($colunm, $value);
+  }
+
+  public function create($user, $card) {
+    $user->cards()->save(new Card([
+      "serial" => $card["serial"],
+      "pin" => $card["pin"],
+      "amount" => $card["amount"],
+      "telcocode" => $card["telcocode"],
+      "coin" => $this->rate_coin($card["amount"])
+    ]));
+
+    $user->update_coin($this->rate_coin($card["amount"]));
+  }
+
+  public function rate_coin($amount = 0) {
+    return 10 * $amount;
   }
 
   // payment -------------------------
   public function charging($card_info) {
-    $username = Auth::user()->name;
     $info["cardSerial"] = $card_info["serial"];
     $info["cardPin"] = $card_info["pin"];
-    $info["telcoCode"] = $card_info["telcoCode"];
+    $info["telcoCode"] = $card_info["telcocode"];
     
     $project_id = $this->config["PROJECT_ID"];
     $trans_id = $project_id . date("YmdHis") . rand(1, 99999);
@@ -51,7 +66,6 @@ class CardRepository
       "transid" => $trans_id,
       "telcocode" => $info["telcoCode"],
       "username" => $this->config["USER_NAME"],
-      "account" => $username,
       "payment_channel" => $this->config["PAYMENT_CHANNEL"]
     );
     

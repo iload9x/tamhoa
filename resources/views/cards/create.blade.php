@@ -14,7 +14,7 @@
       <div class="form-group{{ $errors->has('telcoCode') ? ' has-error' : '' }}">
         <label class="col-sm-3 control-label">@lang("cards.create.telco"):</label>
         <div class="col-sm-6">
-          <select required name="card[telcoCode]"
+          <select required name="card[telcocode]"
             class="select_server form-control input-sm">
             <option value="">----@lang("cards.create.telco")----</option>
             <option value="VTT">Thẻ Vietel</option>

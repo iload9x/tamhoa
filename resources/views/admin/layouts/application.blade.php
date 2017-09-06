@@ -236,6 +236,7 @@
       type="text/javascript"></script>
     <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/x-editable/bootstrap3-editable/js/bootstrap-editable.min.js"
       type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/chartjs/Chart.min.js" type="text/javascript"></script>
     <script type="text/javascript">
       $(document).ready(function(){
         //initialize the javascript

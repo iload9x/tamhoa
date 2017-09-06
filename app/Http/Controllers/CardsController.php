@@ -47,11 +47,11 @@ class CardsController extends Controller
         ]);
       }
 
-      $this->card->create([
+      $this->card->create(Auth::user(), [
         "serial" => $input_card["serial"],
         "pin" => $input_card["pin"],
-        "telcocode" => $input_card["telcoCode"],
-        "payment_amount" => $card
+        "telcocode" => $input_card["telcocode"],
+        "amount" => $card
       ]);
       return redirect()->back()
         ->with("success", __("cards.payment_success", ["amount" => number_format($card)])); 
