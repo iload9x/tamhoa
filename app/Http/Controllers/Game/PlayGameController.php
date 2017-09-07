@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Server;
 use Cookie;
 use Auth;
+use Carbon\Carbon;
 
 class PlayGameController extends Controller
 {
@@ -16,8 +17,18 @@ class PlayGameController extends Controller
 
   public function show($id) {
     $server = Server::where(["server_id" => $id])->first();
+
     if ($server) {
+      $time_open = Carbon::parse($server->time_open)->timestamp;
+
+      if ($time_open > time()) {
+        return view("layouts._waiting_for_open_server",[
+          "time_open" => $time_open - time()
+        ]);
+      }
+
       $time_out = Cookie::get("waiting_for_update_" . $server->database);
+
       if ($time_out) {
         return view("layouts._waiting_to_update",[
           "time_out" => $time_out - time()
