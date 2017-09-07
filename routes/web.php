@@ -32,6 +32,13 @@ Route::resource("cards", "CardsController", ["only" => [
   "store" => "cards.store"
 ]]);
 
+Route::resource("chat-box", "chatboxController", ["only" => [
+  "index", "store"
+], "names" => [
+  "index" => "chatbox.index",
+  "store" => "chatbox.store"
+]]);
+
 Route::group(["namespace" => "Game", "prefix" => "game"], function() {
   Route::resource("players", "PlayerController");
   Route::resource("choi-game", "PlayGameController", ["only" => [
@@ -86,6 +93,15 @@ Route::group(["namespace" => "Admin", "prefix" => "admin"], function() {
     "store" => "admin.cards.store",
     "destroy" => "admin.cards.destroy",
     "update" => "admin.cards.update"
+  ]]);
+
+  Route::resource("configs", "ConfigController", ["only" => [
+    "index", "store", "destroy"
+  ], "names" => [
+    "index" => "admin.configs.index",
+    "store" => "admin.configs.store",
+    "destroy" => "admin.configs.destroy",
+    "update" => "admin.configs.update"
   ]]);
 
 });

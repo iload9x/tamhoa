@@ -8,6 +8,7 @@ use App\Server;
 use Cookie;
 use Auth;
 use Carbon\Carbon;
+use App\Helpers\ConfigHelper;
 
 class PlayGameController extends Controller
 {
@@ -37,7 +38,7 @@ class PlayGameController extends Controller
       $info_server = [
         "title" => $server->name,
         "enterAccount" => Auth::user()->enter_account(),
-        "ip" => "103.75.182.197",
+        "ip" => ConfigHelper::get_keyword("ip")->value,
         "port" => $server->port
       ];
       return view("layouts.playgame", ["info_server" => $info_server]);
