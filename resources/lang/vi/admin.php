@@ -24,4 +24,10 @@
     "chart" => "Biểu đồ",
     "last_month" => "Tháng trước",
     "this_month" => "Tháng này",
+    "today" => "Hôm nay",
+    "yesterday" => "Hôm qua",
+    "last_day" => ":day ngày gần đây",
+    "top_card" => "TOP nạp thẻ",
+    "total_card_amount" => "Tổng mệnh giá",
+    "latest_time" => "Thời gian nạp gần đây",
   ];
