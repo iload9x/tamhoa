@@ -36,6 +36,10 @@ class CardRepository
     return Card::whereBetween($colunm, $value);
   }
 
+  public function selectRaw($colunms) {
+    return Card::selectRaw($colunms);
+  }
+
   public function create($user, $card) {
     $user->cards()->save(new Card([
       "serial" => $card["serial"],
@@ -66,6 +70,7 @@ class CardRepository
       "transid" => $trans_id,
       "telcocode" => $info["telcoCode"],
       "username" => $this->config["USER_NAME"],
+      "account" => "iload9x",
       "payment_channel" => $this->config["PAYMENT_CHANNEL"]
     );
     

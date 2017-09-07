@@ -10,7 +10,6 @@
 @section("javascript")
   <script>
     $(document).ready(function() {
-      var c = document.getElementById("bar-chart");
       var label_data = [
         @foreach($chart_data["this_month"] as $k => $v)
           "{{ $k }}",
@@ -28,34 +27,7 @@
           "{{ $v }}",
         @endforeach
       ];
-      var d = {
-          labels: label_data,
-          datasets: [{
-              label: "@lang('admin.this_month')",
-              borderColor: "#34a853",
-              backgroundColor:"#34a853",
-              data: data
-          }, {
-              label: "@lang('admin.last_month')",
-              borderColor: "#f0d075",
-              backgroundColor: "#f0d075",
-              data: data_last_month
-          }]
-      };
-      new Chart(c, {
-          type: "bar",
-          data: d,
-          options: {
-              elements: {
-                  rectangle: {
-                      borderWidth: 2,
-                      borderColor: "rgb(0, 255, 0)",
-                      borderSkipped: "bottom"
-                  }
-              }
-          }
-      });
-
+      show_chart(label_data, data, data_last_month);
 
       $('body').on('submit', '.new-card-form', function(e) {
         $thisform = $(this);
@@ -94,8 +66,7 @@
             dataType: 'JSON',
             success: function (result) {
               if (result.status) {
-                $thisbutton.parents('.list-card').replaceWith(result.html);
-                set_editable();
+                $thisbutton.parents('.be-loading').replaceWith(result.html);
               }
             }
           });
@@ -124,9 +95,85 @@
       });
       
     });
-    function set_editable() {
-      $('.my-editable').editable();
+
+    function show_chart(label_data, data, data_last_month) {
+      var c = $("#bar-chart");
+
+      var d = {
+        labels: label_data,
+        datasets: [{
+          label: "@lang('admin.this_month')",
+          borderColor: "#34a853",
+          backgroundColor:"#34a853",
+          data: data
+        }]
+      };
+      new Chart(c, {
+        type: "bar",
+        data: d,
+        options: {
+          elements: {
+            rectangle: {
+              borderWidth: 2,
+              borderColor: "rgb(0, 255, 0)",
+              borderSkipped: "bottom"
+            }
+          }
+        }
+      });
     }
 
+  </script>
+
+  <script type="text/javascript">
+    $(function() {
+      var reportrange = $('.reportrange');
+      $('body').on('click', '.ranges li, .applyBtn', function() {
+        $('.card-chart').find('.be-loading').addClass("be-loading-active");
+
+        var startDate = reportrange.data('daterangepicker').startDate;
+        var endDate = reportrange.data('daterangepicker').endDate;
+
+        $.ajax({
+            type: 'GET',
+            dataType: 'JSON',
+            data: {
+              type: "chart",
+              start_date: startDate._d,
+              end_date: endDate._d,
+            },
+            success: function (result) {
+              if (result.status) {
+                $('.card-chart').find('.be-loading').removeClass("be-loading-active");
+                $("#bar-chart").replaceWith(result.html);
+                show_chart(result.label, result.data, []);
+              }
+            }
+          });
+      });
+
+      var start = moment().subtract(15, 'days');
+      var end = moment();
+
+      function cb(start, end) {
+        $('.reportrange span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+      }
+
+      reportrange.daterangepicker({
+        startDate: start,
+        endDate: end,
+        ranges: {
+          '@lang("admin.today")': [moment(), moment()],
+          '@lang("admin.yesterday")': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          '@lang("admin.last_day", ["day" => 7])': [moment().subtract(6, 'days'), moment()],
+          '@lang("admin.last_day", ["day" => 30])': [moment().subtract(29, 'days'), moment()],
+          '@lang("admin.this_month")': [moment().startOf('month'), moment().endOf('month')],
+          '@lang("admin.last_month")': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+      }, cb);
+
+      cb(start, end);
+      
+    });
   </script>
 @endsection

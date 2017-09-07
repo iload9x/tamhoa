@@ -16,6 +16,7 @@
     <![endif]-->
     <link rel="stylesheet" type="text/css"
       href="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/x-editable/bootstrap3-editable/css/bootstrap-editable.css"/>
+    <link rel="stylesheet" type="text/css" href="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/daterangepicker/css/daterangepicker.css"/>
     <link rel="stylesheet" type="text/css"
       href="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/x-editable/inputs-ext/typeaheadjs/lib/typeahead.js-bootstrap.css"/>
     <link rel="stylesheet" href="/{{ \App\Helpers\AssetHelper::path() }}assets/css/style.css" type="text/css"/>
@@ -236,6 +237,10 @@
       type="text/javascript"></script>
     <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/x-editable/bootstrap3-editable/js/bootstrap-editable.min.js"
       type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/datetimepicker/js/bootstrap-datetimepicker.min.js"
+      type="text/javascript"></script>
+    <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/daterangepicker/js/daterangepicker.js" type="text/javascript"></script>
     <script src="/{{ \App\Helpers\AssetHelper::path() }}assets/lib/chartjs/Chart.min.js" type="text/javascript"></script>
     <script type="text/javascript">
       $(document).ready(function(){
