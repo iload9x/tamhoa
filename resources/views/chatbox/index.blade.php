@@ -1,0 +1,1 @@
+<form action="{{ route('chatbox.store') }}"></form>
