@@ -53,7 +53,7 @@ class CardRepository
   }
 
   public function rate_coin($amount = 0) {
-    return 10 * $amount;
+    return 50 * $amount;
   }
 
   // payment -------------------------

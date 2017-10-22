@@ -6,6 +6,8 @@
   <span class="name">@lang("cards.create.name")</span>
   </div>
   <div class="panel-body payment">
+    <div class="text-center"><span><b>Nạp 10.000đ = 500.000 KNB</b></span></div>
+    <div class="text-center"><span><b>Lỗi nạp thẻ vui lòng liên hệ:<a target="__blank" href="https://www.facebook.com/game.mth">Admin</a></b></span></div>
     <form action="{{ route('cards.store') }}" method="POST"
       class="form-horizontal group-border-dashed create-card-form">
       {{ csrf_field() }}
@@ -15,7 +17,7 @@
         <label class="col-sm-3 control-label">@lang("cards.create.telco"):</label>
         <div class="col-sm-6">
           <select required name="card[telcocode]"
-            class="select_server form-control input-sm">
+            class="form-control input-sm">
             <option value="">----@lang("cards.create.telco")----</option>
             <option value="VTT">Thẻ Vietel</option>
             <option value="VMS">Thẻ Mobifone</option>

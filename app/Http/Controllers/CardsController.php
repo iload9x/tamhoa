@@ -35,7 +35,7 @@ class CardsController extends Controller
     $card = $this->card->charging($input_card);
 
     if ($card) {
-      if (Auth::user()->cards->count() == 0) {
+      if (Auth::user()->cards->count() == 0 && $card >= 20000) {
         Auth::user()->increase_card_storage([
           "current" => $card + 100000,
           "total" => $card,
