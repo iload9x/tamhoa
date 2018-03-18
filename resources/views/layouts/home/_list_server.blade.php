@@ -13,7 +13,7 @@
         @if(\App\Helpers\ServerHelper::list_server()->count())
           @foreach(\App\Helpers\ServerHelper::list_server() as $server)
             <li>
-              <a href="{{ route('playgame.show', $server->server_id) }}">
+              <a href="{{ $server->url }}">
                 {{ $server->name }}<span class="pull-right hot">@lang("others.txt_hot")</span>
               </a>
             </li>

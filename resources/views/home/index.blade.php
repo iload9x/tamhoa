@@ -2,6 +2,7 @@
 @section("title", __("others.home_title"))
 @section("content")
 @include("home._event_menu")
+@include("home._games")
 <div class="panel panel-border-color panel-border-color-success">
   <div class="panel-heading">@lang("others.daily_activity")
     @if(Auth::user() && Auth::user()->is_admin())

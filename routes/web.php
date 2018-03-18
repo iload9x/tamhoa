@@ -4,6 +4,12 @@ Auth::routes();
 
 Route::get("/", "HomeController@index")->name("home");
 
+Route::resource("games", "GameController", ["only" => [
+  "show"
+], "names" => [
+  "show" => "games.show"
+]]);
+
 Route::resource("coin", "CoinHistoriesController", ["only" => [
   "create", "store"
 ], "names" => [
